@@ -1,16 +1,15 @@
 {
   "files": {
-    "main.css": "/simple-ultron/static/css/main.073c9b0a.css",
-    "main.js": "/simple-ultron/static/js/main.0852dbb3.js",
+    "main.css": "/simple-ultron/static/css/main.e6c13ad2.css",
+    "main.js": "/simple-ultron/static/js/main.f090ba89.js",
     "static/js/787.8e594fea.chunk.js": "/simple-ultron/static/js/787.8e594fea.chunk.js",
-    "static/media/logo.svg": "/simple-ultron/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/simple-ultron/index.html",
-    "main.073c9b0a.css.map": "/simple-ultron/static/css/main.073c9b0a.css.map",
-    "main.0852dbb3.js.map": "/simple-ultron/static/js/main.0852dbb3.js.map",
+    "main.e6c13ad2.css.map": "/simple-ultron/static/css/main.e6c13ad2.css.map",
+    "main.f090ba89.js.map": "/simple-ultron/static/js/main.f090ba89.js.map",
     "787.8e594fea.chunk.js.map": "/simple-ultron/static/js/787.8e594fea.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.073c9b0a.css",
-    "static/js/main.0852dbb3.js"
+    "static/css/main.e6c13ad2.css",
+    "static/js/main.f090ba89.js"
   ]
 }
