@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row } from 'antd';
+import { Button, Card, Col, Modal, Row } from 'antd';
 import Mustache from 'mustache';
 import React, { useEffect, useState } from 'react';
 import {
@@ -7,6 +7,7 @@ import {
 } from '../constants/campaignObjectives';
 import PromptForm from './PromptForm';
 import { PromptPreview } from './PromptPreview';
+import { TemplateDiff } from './TemplateDiff';
 
 const defaultForm = {
   campaign_objective: campaignObjectives[0].value,
@@ -21,7 +22,21 @@ const defaultForm = {
 export const PromptManager: React.FC = () => {
   const [formValues, setFormValues] = useState(defaultForm);
   const [template, setTemplate] = useState('');
+  const [oldTemplate, setOldTemplate] = useState('');
   const [previewContent, setPreviewContent] = useState('');
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
 
   useEffect(() => {
     const storedJsonString = localStorage.getItem('prompt-form');
@@ -35,14 +50,9 @@ export const PromptManager: React.FC = () => {
 
     if (storedTemplate) {
       setTemplate(storedTemplate);
+      setOldTemplate(storedTemplate);
     }
   }, []);
-
-  // const isClickObjective = [
-  //   'Click-Objective-PermissionBased',
-  //   'Click-Objective-DirectSend',
-  // ].includes(campaignObjective);
-  // const isCallObjective = campaignObjective === 'Call-Objective';
 
   Mustache.tags = ['[[', ']]'];
   Mustache.escape = (text) => text;
@@ -70,6 +80,9 @@ export const PromptManager: React.FC = () => {
       title="SMS Cadence Builder"
       extra={
         <>
+          <Button type="primary" onClick={showModal}>
+            Show Template Diff
+          </Button>{' '}
           <Button type="primary" onClick={copy}>
             Copy Output
           </Button>{' '}
@@ -96,8 +109,15 @@ export const PromptManager: React.FC = () => {
           />
         </Col>
       </Row>
+      <Modal
+        title="Template Diff"
+        open={isModalOpen}
+        onOk={handleOk}
+        onCancel={handleCancel}
+        width={1000}
+      >
+        <TemplateDiff oldValue={oldTemplate} newValue={template} />
+      </Modal>
     </Card>
   );
 };
-
-export default PromptManager;

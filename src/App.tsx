@@ -1,6 +1,6 @@
 import { Col, Row } from 'antd';
 import React from 'react';
-import PromptManager from './components/PromptManager';
+import { PromptManager } from './components/PromptManager';
 
 const App: React.FC = () => {
   return (

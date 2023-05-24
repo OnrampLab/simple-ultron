@@ -111,12 +111,8 @@ const PromptForm: React.FC<Props> = ({
             label="Campaign Objective"
             name="campaign_objective"
             tooltip="[[campaign_objective]]"
-            shouldUpdate
           >
-            <Select
-              options={campaignObjectives}
-              // onChange={setCampaignObjective}
-            />
+            <Select options={campaignObjectives} />
           </Form.Item>
 
           <Form.Item
