@@ -1,10 +1,11 @@
-import { Button, Card, Col, Modal, Row } from 'antd';
+import { Button, Card, Col, Row } from 'antd';
 import Mustache from 'mustache';
 import React, { useEffect, useState } from 'react';
 import {
   campaignClickObjectives,
   campaignObjectives,
 } from '../constants/campaignObjectives';
+import { useGlobalModalContext } from '../providers/GlobalModalProvider';
 import PromptForm from './PromptForm';
 import { PromptPreview } from './PromptPreview';
 import { TemplateDiff } from './TemplateDiff';
@@ -24,19 +25,7 @@ export const PromptManager: React.FC = () => {
   const [template, setTemplate] = useState('');
   const [oldTemplate, setOldTemplate] = useState('');
   const [previewContent, setPreviewContent] = useState('');
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const handleOk = () => {
-    setIsModalOpen(false);
-  };
-
-  const handleCancel = () => {
-    setIsModalOpen(false);
-  };
+  const { showModal } = useGlobalModalContext();
 
   useEffect(() => {
     const storedJsonString = localStorage.getItem('prompt-form');
@@ -75,12 +64,18 @@ export const PromptManager: React.FC = () => {
     }
   };
 
+  const showDiff = () =>
+    showModal({
+      title: 'Template Diff',
+      content: <TemplateDiff oldValue={oldTemplate} newValue={template} />,
+    });
+
   return (
     <Card
       title="SMS Cadence Builder"
       extra={
         <>
-          <Button type="primary" onClick={showModal}>
+          <Button type="primary" onClick={showDiff}>
             Show Template Diff
           </Button>{' '}
           <Button type="primary" onClick={copy}>
@@ -109,15 +104,6 @@ export const PromptManager: React.FC = () => {
           />
         </Col>
       </Row>
-      <Modal
-        title="Template Diff"
-        open={isModalOpen}
-        onOk={handleOk}
-        onCancel={handleCancel}
-        width={1000}
-      >
-        <TemplateDiff oldValue={oldTemplate} newValue={template} />
-      </Modal>
     </Card>
   );
 };
