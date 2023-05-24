@@ -38,6 +38,8 @@ export const PromptManager: React.FC = () => {
   };
 
   const save = () => {
+    setOldTemplate(template);
+
     localStorage.setItem('prompt-template', template);
 
     const json = JSON.stringify(formValues);
