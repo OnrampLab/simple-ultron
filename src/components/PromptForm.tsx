@@ -13,7 +13,7 @@ interface Props {
   onSubmit(vallues: any, template: string): void;
 }
 
-const PromptForm: React.FC<Props> = ({
+export const PromptForm: React.FC<Props> = ({
   values = {},
   template,
   onChange,
@@ -248,5 +248,3 @@ const PromptForm: React.FC<Props> = ({
     </Form>
   );
 };
-
-export default PromptForm;

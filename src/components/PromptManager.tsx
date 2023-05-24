@@ -1,27 +1,13 @@
 import { Button, Card, Col, Row } from 'antd';
 import Mustache from 'mustache';
 import React, { useEffect, useState } from 'react';
-import {
-  campaignClickObjectives,
-  campaignObjectives,
-} from '../constants/campaignObjectives';
 import { useGlobalModalContext } from '../providers/GlobalModalProvider';
-import PromptForm from './PromptForm';
+import { PromptDynamicForm } from './PromptDynamicForm';
 import { PromptPreview } from './PromptPreview';
 import { TemplateDiff } from './TemplateDiff';
 
-const defaultForm = {
-  campaign_objective: campaignObjectives[0].value,
-  campaign_rep_title: 'rep',
-  campaign_click_objective: campaignClickObjectives[0].value,
-  number_msgs_per_day: 1,
-  number_days: 15,
-  export_format: 'Regular Text',
-  export_language: 'English',
-};
-
 export const PromptManager: React.FC = () => {
-  const [formValues, setFormValues] = useState(defaultForm);
+  const [formValues, setFormValues] = useState();
   const [template, setTemplate] = useState('');
   const [oldTemplate, setOldTemplate] = useState('');
   const [previewContent, setPreviewContent] = useState('');
@@ -89,7 +75,7 @@ export const PromptManager: React.FC = () => {
     >
       <Row gutter={16}>
         <Col className="gutter-row" span={12}>
-          <PromptForm
+          <PromptDynamicForm
             values={formValues}
             template={template}
             onChange={preview}
