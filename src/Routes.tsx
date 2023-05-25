@@ -1,8 +1,7 @@
-import { Col, Row } from 'antd';
 import React from 'react';
 import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { MyLayout } from './MyLayout';
-import { PromptManager } from './infrastructure/ui/components/PromptManager';
+import { PlaybookDetailPage } from './infrastructure/ui/pages/PlaybookDetailPage';
 
 const router = createBrowserRouter([
   {
@@ -11,13 +10,7 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: (
-          <Row gutter={16}>
-            <Col className="gutter-row" span={24}>
-              <PromptManager />
-            </Col>
-          </Row>
-        ),
+        element: <PlaybookDetailPage />,
       },
     ],
   },
