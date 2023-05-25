@@ -13,10 +13,14 @@ class PlaybookAdapter {
   }
 
   update(playbook: Playbook): Playbook {
+    // NOTE: 兩邊同時存，等確定沒問題後，再把舊的方法移除
     this.storage.set('prompt-template', playbook.template || '');
+    this.storage.set('prompt-form', playbook.formValues);
 
-    const json = JSON.stringify(playbook.formValues);
-    this.storage.set('prompt-form', json);
+    const playbookStore = this.storage.get('playbook-store') || {};
+
+    playbookStore[playbook.id] = playbook;
+    this.storage.set('playbook-store', playbookStore);
 
     console.log('playbook updated', {
       playbook,
@@ -30,6 +34,14 @@ class PlaybookAdapter {
   }
 
   get(id: ID = 1) {
+    const playbookStore = this.storage.get('playbook-store') || {};
+    const rawPlaybook = playbookStore[id];
+
+    // NOTE: 如果有新的資料格式，就優先使用
+    if (rawPlaybook) {
+      return Playbook.of(rawPlaybook);
+    }
+
     const values = this.storage.get('prompt-form');
     const storedTemplate = this.storage.get('prompt-template') || '';
 
@@ -40,8 +52,6 @@ class PlaybookAdapter {
       values,
       storedTemplate
     );
-
-    console.debug('playbook fetched', playbook);
 
     return playbook;
   }

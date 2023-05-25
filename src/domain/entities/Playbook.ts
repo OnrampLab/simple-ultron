@@ -8,4 +8,14 @@ export class Playbook {
     public formValues: any,
     public template: string
   ) {}
+
+  public static of(object: any) {
+    return new Playbook(
+      object.id,
+      object.name,
+      object.formName,
+      object.formValues,
+      object.template
+    );
+  }
 }

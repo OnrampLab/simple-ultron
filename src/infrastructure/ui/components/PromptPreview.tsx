@@ -20,7 +20,7 @@ export const PromptPreview: React.FC<Props> = ({
   Mustache.escape = (text) => text;
 
   useEffect(() => {
-    const result = Mustache.render(template, values);
+    const result = Mustache.render(template, values || {});
 
     setOutput(result);
     onOutputChange(result);
