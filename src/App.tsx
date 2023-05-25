@@ -1,7 +1,7 @@
 import { Col, Row } from 'antd';
 import React from 'react';
-import { PromptManager } from './components/PromptManager';
-import { GlobalModalProvider } from './providers/GlobalModalProvider';
+import { PromptManager } from './infrastructure/ui/components/PromptManager';
+import { GlobalModalProvider } from './infrastructure/ui/providers/GlobalModalProvider';
 
 const App: React.FC = () => {
   return (
