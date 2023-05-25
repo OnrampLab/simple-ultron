@@ -1,7 +1,4 @@
-export interface KeyValueStorageService<T> {
-  set(key: string, value: T): void;
-  get(key: string): T | null;
-}
+import { KeyValueStorageService } from '../../application/ports';
 
 export class LocalStorageAdapter<T> implements KeyValueStorageService<T> {
   set(key: string, value: T) {
@@ -18,5 +15,9 @@ export class LocalStorageAdapter<T> implements KeyValueStorageService<T> {
     } catch (error) {
       return json as T;
     }
+  }
+
+  remove(key: string) {
+    localStorage.removeItem(key);
   }
 }

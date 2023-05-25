@@ -13,9 +13,9 @@ class PlaybookAdapter {
   }
 
   update(playbook: Playbook): Playbook {
-    // NOTE: 兩邊同時存，等確定沒問題後，再把舊的方法移除
-    this.storage.set('prompt-template', playbook.template || '');
-    this.storage.set('prompt-form', playbook.formValues);
+    // NOTE: 把舊的方法移除
+    this.storage.remove('prompt-template');
+    this.storage.remove('prompt-form');
 
     const playbookStore = this.storage.get('playbook-store') || {};
 
@@ -37,20 +37,16 @@ class PlaybookAdapter {
     const playbookStore = this.storage.get('playbook-store') || {};
     const rawPlaybook = playbookStore[id];
 
-    // NOTE: 如果有新的資料格式，就優先使用
     if (rawPlaybook) {
       return Playbook.of(rawPlaybook);
     }
-
-    const values = this.storage.get('prompt-form');
-    const storedTemplate = this.storage.get('prompt-template') || '';
 
     const playbook = new Playbook(
       1,
       'My SMS Cadence Builder',
       smsCadenceBuilder.name,
-      values,
-      storedTemplate
+      {},
+      ''
     );
 
     return playbook;
