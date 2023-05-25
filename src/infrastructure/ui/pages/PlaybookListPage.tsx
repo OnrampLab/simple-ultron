@@ -1,6 +1,7 @@
 import { Button, Card, Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Playbook } from '../../../domain/entities/Playbook';
 import { usePlaybooks } from '../hooks/usePlaybooks';
 
@@ -12,7 +13,9 @@ export const PlaybookListPage: React.FC = () => {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
-      render: (text, record) => <a href={`/playbooks/${record.id}`}>{text}</a>,
+      render: (text, record) => (
+        <Link to={`/playbooks/${record.id}`}>{text}</Link>
+      ),
     },
     {
       title: 'Form Name',
@@ -24,7 +27,7 @@ export const PlaybookListPage: React.FC = () => {
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
-          <a href={`/playbooks/${record.id}`}>Show</a>
+          <Link to={`/playbooks/${record.id}`}>Show</Link>
         </Space>
       ),
     },
@@ -35,7 +38,7 @@ export const PlaybookListPage: React.FC = () => {
       title="SMS Cadence Builder"
       extra={
         <>
-          <Button type="primary" href="/playbooks/new">
+          <Button type="primary" href="#/playbooks/new">
             Create New Playbook
           </Button>
         </>

@@ -1,6 +1,7 @@
 import { SettingOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 type AntdMenuItem = Required<MenuProps>['items'][number];
 type MenuItem = AntdMenuItem & {
@@ -13,7 +14,7 @@ function getItem(
   icon?: React.ReactNode,
   children?: MenuItem[]
 ): MenuItem {
-  const link = <a href={path}>{label}</a>;
+  const link = <Link to={path}>{label}</Link>;
 
   return {
     key: path,

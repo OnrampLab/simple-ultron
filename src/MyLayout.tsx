@@ -1,6 +1,6 @@
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React, { useState } from 'react';
-import { Outlet } from 'react-router-dom';
+import { Link, Outlet } from 'react-router-dom';
 import { menuItems } from './menuItems';
 
 const { Content, Footer, Sider } = Layout;
@@ -34,7 +34,7 @@ export const MyLayout: React.FC = () => {
         <Content style={{ margin: '0 15px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>
-              <a href="/playbooks">Playbooks</a>
+              <Link to="/playbooks">Playbooks</Link>
             </Breadcrumb.Item>
             <Breadcrumb.Item>My SMS Cadence Builder</Breadcrumb.Item>
           </Breadcrumb>
