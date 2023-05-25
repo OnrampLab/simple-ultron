@@ -3,7 +3,7 @@ import Mustache from 'mustache';
 import React, { useEffect, useState } from 'react';
 import { Playbook } from '../../../domain/entities/Playbook';
 import { smsCadenceBuilder } from '../../../domain/playbookForms/smsCadenceBuilder';
-import { clipboardAdapter } from '../../adapters/ClipboardAdapter';
+import { useClipboard } from '../hooks/useClipboard';
 import { usePlaybook } from '../hooks/usePlaybook';
 import { useGlobalModalContext } from '../providers/GlobalModalProvider';
 import { PromptDynamicForm } from './PromptDynamicForm';
@@ -17,6 +17,7 @@ export const PromptManager: React.FC = () => {
   const [previewContent, setPreviewContent] = useState('');
   const { showModal } = useGlobalModalContext();
   const { playbook, update: updatePlaybook } = usePlaybook();
+  const { save: saveToClip } = useClipboard();
 
   useEffect(() => {
     if (!playbook) {
@@ -51,9 +52,7 @@ export const PromptManager: React.FC = () => {
   };
 
   const copy = () => {
-    if (previewContent) {
-      clipboardAdapter.save(previewContent);
-    }
+    saveToClip(previewContent);
   };
 
   const showDiff = () =>
