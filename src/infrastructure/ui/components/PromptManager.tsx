@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Playbook } from '../../../domain/entities/Playbook';
 import { smsCadenceBuilder } from '../../../domain/playbookForms/smsCadenceBuilder';
 import { clipboardAdapter } from '../../adapters/ClipboardAdapter';
-import { playbookAdapter } from '../../adapters/PlaybookAdapter';
+import { usePlaybook } from '../hooks/usePlaybook';
 import { useGlobalModalContext } from '../providers/GlobalModalProvider';
 import { PromptDynamicForm } from './PromptDynamicForm';
 import { PromptPreview } from './PromptPreview';
@@ -16,14 +16,17 @@ export const PromptManager: React.FC = () => {
   const [oldTemplate, setOldTemplate] = useState('');
   const [previewContent, setPreviewContent] = useState('');
   const { showModal } = useGlobalModalContext();
+  const { playbook, update: updatePlaybook } = usePlaybook();
 
   useEffect(() => {
-    const playbook = playbookAdapter.get();
+    if (!playbook) {
+      return;
+    }
 
     setFormValues(playbook.formValues);
     setTemplate(playbook.template);
     setOldTemplate(playbook.template);
-  }, []);
+  }, [playbook]);
 
   Mustache.tags = ['[[', ']]'];
   Mustache.escape = (text) => text;
@@ -44,7 +47,7 @@ export const PromptManager: React.FC = () => {
       template
     );
 
-    playbookAdapter.update(playbook);
+    updatePlaybook(playbook);
   };
 
   const copy = () => {
