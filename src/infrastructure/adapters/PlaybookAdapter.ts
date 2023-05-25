@@ -29,8 +29,14 @@ class PlaybookAdapter {
     return playbook;
   }
 
-  list() {
-    return [this.get()];
+  list(query: any = {}): Playbook[] {
+    const playbookStore = this.storage.get('playbook-store') || {};
+
+    Object.keys(playbookStore).forEach((id: string) => {
+      playbookStore[id] = Playbook.of(playbookStore[id]);
+    });
+
+    return Object.values(playbookStore);
   }
 
   get(id: ID = 1) {

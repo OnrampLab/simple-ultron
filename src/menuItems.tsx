@@ -1,4 +1,4 @@
-import { PieChartOutlined, SettingOutlined } from '@ant-design/icons';
+import { SettingOutlined } from '@ant-design/icons';
 import type { MenuProps } from 'antd';
 import React from 'react';
 
@@ -25,8 +25,7 @@ function getItem(
 }
 
 export const menuItems: MenuItem[] = [
-  getItem('Playbook', '/', <SettingOutlined />),
-  getItem('Playbooks', '/playbooks', <PieChartOutlined />),
+  getItem('Playbooks', '/playbooks', <SettingOutlined />),
   // getItem('User', 'sub1', <UserOutlined />, [
   //   getItem('Tom', '3'),
   //   getItem('Bill', '4'),

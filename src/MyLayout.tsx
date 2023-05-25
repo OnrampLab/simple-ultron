@@ -33,7 +33,9 @@ export const MyLayout: React.FC = () => {
       <Layout>
         <Content style={{ margin: '0 15px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>Playbooks</Breadcrumb.Item>
+            <Breadcrumb.Item>
+              <a href="/playbooks">Playbooks</a>
+            </Breadcrumb.Item>
             <Breadcrumb.Item>My SMS Cadence Builder</Breadcrumb.Item>
           </Breadcrumb>
           <Outlet />
