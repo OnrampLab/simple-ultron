@@ -1,38 +1,20 @@
-import { PieChartOutlined } from '@ant-design/icons';
-import type { MenuProps } from 'antd';
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React, { useState } from 'react';
 import { Outlet } from 'react-router-dom';
+import { menuItems } from './menuItems';
 
 const { Content, Footer, Sider } = Layout;
 
-type MenuItem = Required<MenuProps>['items'][number];
-
-function getItem(
-  label: React.ReactNode,
-  key: React.Key,
-  icon?: React.ReactNode,
-  children?: MenuItem[]
-): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-  } as MenuItem;
-}
-
-const items: MenuItem[] = [
-  getItem(<a href="/">Playbooks</a>, '1', <PieChartOutlined />),
-  // getItem('User', 'sub1', <UserOutlined />, [
-  //   getItem('Tom', '3'),
-  //   getItem('Bill', '4'),
-  //   getItem('Alex', '5'),
-  // ]),
-];
-
 export const MyLayout: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
+
+  const url = new URL(window.location.href);
+
+  const defaultSelectedKeys = menuItems
+    .filter((item) => {
+      return item?.path === url.pathname;
+    })
+    .map((item) => item.path);
 
   return (
     <Layout style={{ minHeight: '100vh' }}>
@@ -43,9 +25,9 @@ export const MyLayout: React.FC = () => {
       >
         <Menu
           theme="dark"
-          defaultSelectedKeys={['1']}
+          defaultSelectedKeys={defaultSelectedKeys}
           mode="inline"
-          items={items}
+          items={menuItems}
         />
       </Sider>
       <Layout>
