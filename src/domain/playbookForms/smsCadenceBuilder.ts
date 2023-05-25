@@ -1,6 +1,6 @@
 import { PlaybookForm } from '../entities/PlaybookForm';
 
-export const playbook: PlaybookForm = {
+export const smsCadenceBuilder: PlaybookForm = {
   name: 'SMS Cadence Builder',
   blocks: [
     {

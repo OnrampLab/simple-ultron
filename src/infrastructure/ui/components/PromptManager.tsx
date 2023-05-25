@@ -1,6 +1,9 @@
 import { Button, Card, Col, Row } from 'antd';
 import Mustache from 'mustache';
 import React, { useEffect, useState } from 'react';
+import { Playbook } from '../../../domain/entities/Playbook';
+import { smsCadenceBuilder } from '../../../domain/playbookForms/smsCadenceBuilder';
+import { playbookAdapter } from '../../adapters/PlaybookAdapter';
 import { useGlobalModalContext } from '../providers/GlobalModalProvider';
 import { PromptDynamicForm } from './PromptDynamicForm';
 import { PromptPreview } from './PromptPreview';
@@ -14,19 +17,11 @@ export const PromptManager: React.FC = () => {
   const { showModal } = useGlobalModalContext();
 
   useEffect(() => {
-    const storedJsonString = localStorage.getItem('prompt-form');
-    const storedTemplate = localStorage.getItem('prompt-template');
+    const playbook = playbookAdapter.get();
 
-    if (storedJsonString) {
-      const values = JSON.parse(storedJsonString);
-      setFormValues(values);
-      console.debug('Load form from local storage', values);
-    }
-
-    if (storedTemplate) {
-      setTemplate(storedTemplate);
-      setOldTemplate(storedTemplate);
-    }
+    setFormValues(playbook.formValues);
+    setTemplate(playbook.template);
+    setOldTemplate(playbook.template);
   }, []);
 
   Mustache.tags = ['[[', ']]'];
@@ -40,10 +35,15 @@ export const PromptManager: React.FC = () => {
   const save = () => {
     setOldTemplate(template);
 
-    localStorage.setItem('prompt-template', template);
+    const playbook = new Playbook(
+      1,
+      'My SMS Cadence Builder',
+      smsCadenceBuilder.name,
+      formValues,
+      template
+    );
 
-    const json = JSON.stringify(formValues);
-    localStorage.setItem('prompt-form', json);
+    playbookAdapter.update(playbook);
   };
 
   const copy = () => {

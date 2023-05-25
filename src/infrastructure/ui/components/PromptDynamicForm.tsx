@@ -1,6 +1,6 @@
 import { Form, Input, Tabs } from 'antd';
 import React, { useEffect, useMemo } from 'react';
-import { playbook } from '../../../domain/playbookForms/smsCadenceBuilder';
+import { smsCadenceBuilder } from '../../../domain/playbookForms/smsCadenceBuilder';
 import { generateField } from './FieldBuilder';
 const { TextArea } = Input;
 
@@ -83,7 +83,7 @@ export const PromptDynamicForm: React.FC<Props> = ({
           </Form.Item>
         </Tabs.TabPane>
 
-        {playbook.blocks.map((block, index) => (
+        {smsCadenceBuilder.blocks.map((block, index) => (
           <Tabs.TabPane tab={block.name} key={index}>
             {block.fields.map((field, index) => generateField(field, index))}
           </Tabs.TabPane>
