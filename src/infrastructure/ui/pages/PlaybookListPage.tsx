@@ -1,4 +1,4 @@
-import { Space, Table } from 'antd';
+import { Button, Card, Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React from 'react';
 import { Playbook } from '../../../domain/entities/Playbook';
@@ -30,5 +30,18 @@ export const PlaybookListPage: React.FC = () => {
     },
   ];
 
-  return <Table columns={columns} dataSource={playbooks} rowKey="id" />;
+  return (
+    <Card
+      title="SMS Cadence Builder"
+      extra={
+        <>
+          <Button type="primary" href="/playbooks/new">
+            Create New Playbook
+          </Button>
+        </>
+      }
+    >
+      <Table columns={columns} dataSource={playbooks} rowKey="id" />
+    </Card>
+  );
 };

@@ -1,6 +1,5 @@
 import { KeyValueStorageService } from '../../application/ports';
 import { Playbook } from '../../domain/entities/Playbook';
-import { ID } from '../../domain/entities/types';
 import { smsCadenceBuilder } from '../../domain/playbookForms/smsCadenceBuilder';
 
 import { LocalStorageAdapter } from './LocalStorageAdapter';
@@ -19,12 +18,21 @@ class PlaybookAdapter {
 
     const playbookStore = this.storage.get('playbook-store') || {};
 
-    playbookStore[playbook.id] = playbook;
-    this.storage.set('playbook-store', playbookStore);
+    if (playbook.id) {
+      playbookStore[playbook.id] = playbook;
+      this.storage.set('playbook-store', playbookStore);
 
-    console.log('playbook updated', {
-      playbook,
-    });
+      console.log('playbook updated', {
+        playbook,
+      });
+    } else {
+      const lastId = Object.keys(playbookStore).sort().pop() || '0';
+
+      playbook.id = parseInt(lastId) + 1;
+      playbook.name = `${playbook.name} ${playbook.id}`;
+
+      this.create(playbook);
+    }
 
     return playbook;
   }
@@ -39,7 +47,7 @@ class PlaybookAdapter {
     return Object.values(playbookStore);
   }
 
-  get(id: ID = 1) {
+  get(id: number) {
     const playbookStore = this.storage.get('playbook-store') || {};
     const rawPlaybook = playbookStore[id];
 
@@ -48,7 +56,7 @@ class PlaybookAdapter {
     }
 
     const playbook = new Playbook(
-      1,
+      null,
       'My SMS Cadence Builder',
       smsCadenceBuilder.name,
       {},
