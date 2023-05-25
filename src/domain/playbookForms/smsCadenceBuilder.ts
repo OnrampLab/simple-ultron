@@ -1,4 +1,6 @@
-export const playbook = {
+import { PlaybookForm } from '../entities/PlaybookForm';
+
+export const playbook: PlaybookForm = {
   name: 'SMS Cadence Builder',
   blocks: [
     {
@@ -24,7 +26,7 @@ export const playbook = {
           name: 'campaign_objective',
           type: 'select',
           options: [
-            { value: 'Text', default: true },
+            { label: 'Text', default: true },
             {
               label: 'Call-Objective',
             },
@@ -41,7 +43,7 @@ export const playbook = {
           name: 'campaign_click_objective',
           type: 'select',
           options: [
-            { value: 'Text', default: true },
+            { label: 'Text', default: true },
             {
               label: 'Learn More',
             },
