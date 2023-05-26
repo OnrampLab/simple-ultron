@@ -28,6 +28,7 @@ export const smsCadenceBuilder: PlaybookForm = {
           options: [
             {
               label: 'Call-Objective',
+              default: true,
             },
             {
               label: 'Click-Objective-PermissionBased',
@@ -44,6 +45,7 @@ export const smsCadenceBuilder: PlaybookForm = {
           options: [
             {
               label: 'Learn More',
+              default: true,
             },
             {
               label: 'Sign Up',
