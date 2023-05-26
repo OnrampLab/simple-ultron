@@ -1,15 +1,15 @@
 {
   "files": {
     "main.css": "/simple-ultron/static/css/main.e6c13ad2.css",
-    "main.js": "/simple-ultron/static/js/main.7325c85a.js",
+    "main.js": "/simple-ultron/static/js/main.b684ff96.js",
     "static/js/787.8e594fea.chunk.js": "/simple-ultron/static/js/787.8e594fea.chunk.js",
     "index.html": "/simple-ultron/index.html",
     "main.e6c13ad2.css.map": "/simple-ultron/static/css/main.e6c13ad2.css.map",
-    "main.7325c85a.js.map": "/simple-ultron/static/js/main.7325c85a.js.map",
+    "main.b684ff96.js.map": "/simple-ultron/static/js/main.b684ff96.js.map",
     "787.8e594fea.chunk.js.map": "/simple-ultron/static/js/787.8e594fea.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.e6c13ad2.css",
-    "static/js/main.7325c85a.js"
+    "static/js/main.b684ff96.js"
   ]
 }
