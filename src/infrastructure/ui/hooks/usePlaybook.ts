@@ -23,7 +23,7 @@ export const usePlaybook = (id?: number) => {
   }, [id]);
 
   const update = (playbook: Playbook) => {
-    playbookAdapter.update(playbook);
+    return playbookAdapter.update(playbook);
   };
 
   return {

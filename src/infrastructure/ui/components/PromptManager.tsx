@@ -47,6 +47,8 @@ export const PromptManager: React.FC<Props> = ({ id }) => {
       playbook.template = template;
 
       updatePlaybook(playbook);
+
+      window.location.href = `#/playbooks/${playbook.id}`;
     }
   };
 
