@@ -26,7 +26,6 @@ export const smsCadenceBuilder: PlaybookForm = {
           name: 'campaign_objective',
           type: 'select',
           options: [
-            { label: 'Text', default: true },
             {
               label: 'Call-Objective',
             },
@@ -43,7 +42,6 @@ export const smsCadenceBuilder: PlaybookForm = {
           name: 'campaign_click_objective',
           type: 'select',
           options: [
-            { label: 'Text', default: true },
             {
               label: 'Learn More',
             },
@@ -144,12 +142,7 @@ export const smsCadenceBuilder: PlaybookForm = {
           label: 'Number of messages per version',
           name: 'number_msgs_per_day',
           type: 'select',
-          options: [
-            { label: 1, default: true },
-            { label: 2 },
-            { label: 3 },
-            { label: 4 },
-          ],
+          options: [{ label: 1 }, { label: 2 }, { label: 3 }, { label: 4 }],
         },
         {
           label: 'Number of Days',
