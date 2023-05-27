@@ -29,6 +29,13 @@ export const PromptPreview: React.FC<Props> = ({
   return (
     <>
       <h2>Preview</h2>
+      <a
+        target="_blank"
+        rel="noreferrer"
+        href="https://chat.openai.com/?model=gpt-4-plugins"
+      >
+        Go To ChatGPT
+      </a>
       <TextArea rows={30} value={output} />
     </>
   );
