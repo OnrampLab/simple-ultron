@@ -36,7 +36,6 @@ export const MyLayout: React.FC = () => {
             <Breadcrumb.Item>
               <Link to="/playbooks">Playbooks</Link>
             </Breadcrumb.Item>
-            <Breadcrumb.Item>My SMS Cadence Builder</Breadcrumb.Item>
           </Breadcrumb>
           <Outlet />
         </Content>

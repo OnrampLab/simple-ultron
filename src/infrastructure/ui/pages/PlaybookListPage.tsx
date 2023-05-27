@@ -35,7 +35,7 @@ export const PlaybookListPage: React.FC = () => {
 
   return (
     <Card
-      title="SMS Cadence Builder"
+      title="Playbooks"
       extra={
         <>
           <Button type="primary" href="#/playbooks/new">
