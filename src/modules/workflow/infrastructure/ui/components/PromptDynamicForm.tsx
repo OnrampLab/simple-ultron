@@ -1,4 +1,5 @@
 import { Form, Input, Tabs } from 'antd';
+import { Tab } from 'rc-tabs/lib/interface';
 import React, { useEffect, useMemo } from 'react';
 import { smsCadenceBuilder } from '../../../domain/workflowForms/smsCadenceBuilder';
 import { generateField } from './FieldBuilder';
@@ -29,6 +30,27 @@ export const PromptDynamicForm: React.FC<Props> = ({
   useEffect(() => {
     form.setFieldsValue(initialValues);
   }, [form, initialValues]);
+
+  let tabItems: Tab[] = smsCadenceBuilder.blocks.map((block, index) => ({
+    key: block.name,
+    tabKey: block.name,
+    label: block.name,
+    children: block.fields.map((field, index) => generateField(field, index)),
+  }));
+
+  tabItems = [
+    {
+      key: 'Template',
+      tabKey: 'Template',
+      label: 'Template',
+      children: (
+        <Form.Item name="promptTemplate" wrapperCol={{ span: 22 }}>
+          <TextArea rows={30} />
+        </Form.Item>
+      ),
+    },
+    ...tabItems,
+  ];
 
   const processValues = (values: any) => {
     const view = {
@@ -76,19 +98,7 @@ export const PromptDynamicForm: React.FC<Props> = ({
       onFinish={onFormSubmit}
       onValuesChange={onFormChange}
     >
-      <Tabs size="large">
-        <Tabs.TabPane tab="Template" key="template">
-          <Form.Item name="promptTemplate" wrapperCol={{ span: 22 }}>
-            <TextArea rows={30} />
-          </Form.Item>
-        </Tabs.TabPane>
-
-        {smsCadenceBuilder.blocks.map((block, index) => (
-          <Tabs.TabPane tab={block.name} key={index}>
-            {block.fields.map((field, index) => generateField(field, index))}
-          </Tabs.TabPane>
-        ))}
-      </Tabs>
+      <Tabs size="large" items={tabItems} />
     </Form>
   );
 };

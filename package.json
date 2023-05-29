@@ -12,6 +12,7 @@
     "@types/react": "^18.2.6",
     "@types/react-dom": "^18.2.4",
     "antd": "^5.5.0",
+    "chatgpt": "^5.2.4",
     "craco": "^0.0.3",
     "mustache": "^4.2.0",
     "react": "^18.2.0",

@@ -1,5 +1,6 @@
 import { useNavigate } from '@core/infrastructure/ui/hooks/useNavigate';
 import { Card, Col, Dropdown, MenuProps, Row } from 'antd';
+import { chatgptAdapter } from 'modules/chatgpt/infrastructure/adapters/ChatgptAdapter';
 import Mustache from 'mustache';
 import React, { useEffect, useState } from 'react';
 import { useClipboard } from '../hooks/useClipboard';
@@ -41,7 +42,7 @@ export const PromptManager: React.FC<Props> = ({ id }) => {
     setTemplate(template);
   };
 
-  const save = () => {
+  const save = async () => {
     setOldTemplate(template);
 
     if (workflow) {
@@ -52,6 +53,10 @@ export const PromptManager: React.FC<Props> = ({ id }) => {
 
       navigate(`/workflows/${workflow.id}`);
     }
+
+    const response = await chatgptAdapter.sendMessage('What is OpenAI?');
+
+    console.log({ response });
   };
 
   const copy = () => {
