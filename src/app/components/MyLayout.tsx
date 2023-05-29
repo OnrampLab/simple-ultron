@@ -1,7 +1,7 @@
 import { Breadcrumb, Layout, Menu } from 'antd';
 import React, { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import { menuItems } from './menuItems';
+import { menuItems } from '../config/menuItems';
 
 const { Content, Footer, Sider } = Layout;
 

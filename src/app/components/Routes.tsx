@@ -1,9 +1,9 @@
 import React from 'react';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
+import { WorkflowDetailPage } from '../../modules/workflow/infrastructure/ui/pages/WorkflowDetailPage';
+import { WorkflowFormPage } from '../../modules/workflow/infrastructure/ui/pages/WorkflowFormPage';
+import { WorkflowListPage } from '../../modules/workflow/infrastructure/ui/pages/WorkflowListPage';
 import { MyLayout } from './MyLayout';
-import { WorkflowDetailPage } from './infrastructure/ui/pages/WorkflowDetailPage';
-import { WorkflowFormPage } from './infrastructure/ui/pages/WorkflowFormPage';
-import { WorkflowListPage } from './infrastructure/ui/pages/WorkflowListPage';
 
 const router = createHashRouter([
   {
