@@ -19,7 +19,8 @@ export const MyLayout: React.FC = () => {
   return (
     <Layout style={{ minHeight: '100vh' }}>
       <Sider
-        collapsible
+        breakpoint="lg"
+        collapsedWidth="0"
         collapsed={collapsed}
         onCollapse={(value) => setCollapsed(value)}
       >
