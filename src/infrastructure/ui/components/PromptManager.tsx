@@ -1,4 +1,4 @@
-import { Button, Card, Col, Row } from 'antd';
+import { Card, Col, Dropdown, MenuProps, Row } from 'antd';
 import Mustache from 'mustache';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
@@ -64,21 +64,26 @@ export const PromptManager: React.FC<Props> = ({ id }) => {
       content: <TemplateDiff oldValue={oldTemplate} newValue={template} />,
     });
 
+  const items: MenuProps['items'] = [
+    {
+      key: 1,
+      label: 'Copy Output',
+      onClick: copy,
+    },
+    {
+      key: 2,
+      label: 'Show Template Diff',
+      onClick: showDiff,
+    },
+  ];
+
   return (
     <Card
       title="SMS Cadence Builder"
       extra={
-        <>
-          <Button type="primary" onClick={showDiff}>
-            Show Template Diff
-          </Button>{' '}
-          <Button type="primary" onClick={copy}>
-            Copy Output
-          </Button>{' '}
-          <Button type="primary" onClick={save}>
-            Save
-          </Button>
-        </>
+        <Dropdown.Button menu={{ items }} onClick={save}>
+          Save
+        </Dropdown.Button>
       }
     >
       <Row gutter={16}>
