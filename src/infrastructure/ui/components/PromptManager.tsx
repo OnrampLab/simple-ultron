@@ -1,6 +1,7 @@
 import { Button, Card, Col, Row } from 'antd';
 import Mustache from 'mustache';
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useClipboard } from '../hooks/useClipboard';
 import { useWorkflow } from '../hooks/useWorkflow';
 import { useGlobalModalContext } from '../providers/GlobalModalProvider';
@@ -13,6 +14,7 @@ interface Props {
 }
 
 export const PromptManager: React.FC<Props> = ({ id }) => {
+  const navigate = useNavigate();
   const [formValues, setFormValues] = useState();
   const [template, setTemplate] = useState('');
   const [oldTemplate, setOldTemplate] = useState('');
@@ -48,7 +50,7 @@ export const PromptManager: React.FC<Props> = ({ id }) => {
 
       updateWorkflow(workflow);
 
-      window.location.href = `#/workflows/${workflow.id}`;
+      navigate(`/workflows/${workflow.id}`);
     }
   };
 

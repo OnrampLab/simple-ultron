@@ -1,11 +1,12 @@
 import { Button, Card, Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Workflow } from '../../../domain/entities/Workflow';
 import { useWorkflows } from '../hooks/useWorkflows';
 
 export const WorkflowListPage: React.FC = () => {
+  const navigate = useNavigate();
   const { workflows } = useWorkflows();
 
   const columns: ColumnsType<Workflow> = [
@@ -38,7 +39,7 @@ export const WorkflowListPage: React.FC = () => {
       title="Workflows"
       extra={
         <>
-          <Button type="primary" href="#/workflows/new">
+          <Button type="primary" onClick={() => navigate('/workflows/new')}>
             Create New Workflow
           </Button>
         </>
