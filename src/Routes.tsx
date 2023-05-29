@@ -11,6 +11,10 @@ const router = createHashRouter([
     element: <MyLayout />,
     children: [
       {
+        index: true,
+        element: <WorkflowListPage />,
+      },
+      {
         path: '/workflows',
         element: <WorkflowListPage />,
       },
