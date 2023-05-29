@@ -7,7 +7,11 @@ type Props = {
 
 type ModalProps = {
   title?: string;
+  okText?: string;
+  cancelText?: string;
   content: JSX.Element;
+  onOk?(): void;
+  onCancel?(): void;
 };
 
 type GlobalModalContextContract = {
@@ -52,14 +56,26 @@ export const GlobalModalProvider: React.FC<Props> = ({ children }) => {
     setStore(initialState.store);
   };
 
+  const onOkClick = () => {
+    modalProps?.onOk?.();
+    hideModal();
+  };
+
+  const onCancelClick = () => {
+    modalProps?.onCancel?.();
+    hideModal();
+  };
+
   const renderComponent = () => {
     return (
       <Modal
         title={modalProps?.title || 'Modal'}
         open={store.show}
-        onOk={hideModal}
-        onCancel={hideModal}
+        onOk={onOkClick}
+        onCancel={onCancelClick}
         width={1200}
+        okText={modalProps?.okText}
+        cancelText={modalProps?.cancelText}
       >
         {modalProps?.content}
       </Modal>
