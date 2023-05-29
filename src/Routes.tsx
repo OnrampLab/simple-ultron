@@ -1,9 +1,9 @@
 import React from 'react';
 import { RouterProvider, createHashRouter } from 'react-router-dom';
 import { MyLayout } from './MyLayout';
-import { PlaybookDetailPage } from './infrastructure/ui/pages/PlaybookDetailPage';
-import { PlaybookFormPage } from './infrastructure/ui/pages/PlaybookFormPage';
-import { PlaybookListPage } from './infrastructure/ui/pages/PlaybookListPage';
+import { WorkflowDetailPage } from './infrastructure/ui/pages/WorkflowDetailPage';
+import { WorkflowFormPage } from './infrastructure/ui/pages/WorkflowFormPage';
+import { WorkflowListPage } from './infrastructure/ui/pages/WorkflowListPage';
 
 const router = createHashRouter([
   {
@@ -11,16 +11,16 @@ const router = createHashRouter([
     element: <MyLayout />,
     children: [
       {
-        path: '/playbooks',
-        element: <PlaybookListPage />,
+        path: '/workflows',
+        element: <WorkflowListPage />,
       },
       {
-        path: '/playbooks/:playbookId',
-        element: <PlaybookDetailPage />,
+        path: '/workflows/:workflowId',
+        element: <WorkflowDetailPage />,
       },
       {
-        path: '/playbooks/new',
-        element: <PlaybookFormPage />,
+        path: '/workflows/new',
+        element: <WorkflowFormPage />,
       },
     ],
   },

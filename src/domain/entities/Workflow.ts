@@ -1,6 +1,6 @@
 import { ID } from './types';
 
-export class Playbook {
+export class Workflow {
   constructor(
     public id: ID | null,
     public name: string,
@@ -10,7 +10,7 @@ export class Playbook {
   ) {}
 
   public static of(object: any) {
-    return new Playbook(
+    return new Workflow(
       object.id,
       object.name,
       object.formName,

@@ -34,7 +34,7 @@ export const MyLayout: React.FC = () => {
         <Content style={{ margin: '0 15px' }}>
           <Breadcrumb style={{ margin: '16px 0' }}>
             <Breadcrumb.Item>
-              <Link to="/playbooks">Playbooks</Link>
+              <Link to="/workflows">Workflows</Link>
             </Breadcrumb.Item>
           </Breadcrumb>
           <Outlet />

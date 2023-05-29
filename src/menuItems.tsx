@@ -26,7 +26,7 @@ function getItem(
 }
 
 export const menuItems: MenuItem[] = [
-  getItem('Playbooks', '/playbooks', <SettingOutlined />),
+  getItem('Workflows', '/workflows', <SettingOutlined />),
   // getItem('User', 'sub1', <UserOutlined />, [
   //   getItem('Tom', '3'),
   //   getItem('Bill', '4'),

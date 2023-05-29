@@ -1,6 +1,6 @@
 import { Form, Input, Tabs } from 'antd';
 import React, { useEffect, useMemo } from 'react';
-import { smsCadenceBuilder } from '../../../domain/playbookForms/smsCadenceBuilder';
+import { smsCadenceBuilder } from '../../../domain/workflowForms/smsCadenceBuilder';
 import { generateField } from './FieldBuilder';
 const { TextArea } = Input;
 

@@ -2,7 +2,7 @@ import { Button, Card, Col, Row } from 'antd';
 import Mustache from 'mustache';
 import React, { useEffect, useState } from 'react';
 import { useClipboard } from '../hooks/useClipboard';
-import { usePlaybook } from '../hooks/usePlaybook';
+import { useWorkflow } from '../hooks/useWorkflow';
 import { useGlobalModalContext } from '../providers/GlobalModalProvider';
 import { PromptDynamicForm } from './PromptDynamicForm';
 import { PromptPreview } from './PromptPreview';
@@ -18,18 +18,18 @@ export const PromptManager: React.FC<Props> = ({ id }) => {
   const [oldTemplate, setOldTemplate] = useState('');
   const [previewContent, setPreviewContent] = useState('');
   const { showModal } = useGlobalModalContext();
-  const { playbook, update: updatePlaybook } = usePlaybook(id);
+  const { workflow, update: updateWorkflow } = useWorkflow(id);
   const { save: saveToClip } = useClipboard();
 
   useEffect(() => {
-    if (!playbook) {
+    if (!workflow) {
       return;
     }
 
-    setFormValues(playbook.formValues);
-    setTemplate(playbook.template);
-    setOldTemplate(playbook.template);
-  }, [playbook]);
+    setFormValues(workflow.formValues);
+    setTemplate(workflow.template);
+    setOldTemplate(workflow.template);
+  }, [workflow]);
 
   Mustache.tags = ['[[', ']]'];
   Mustache.escape = (text) => text;
@@ -42,13 +42,13 @@ export const PromptManager: React.FC<Props> = ({ id }) => {
   const save = () => {
     setOldTemplate(template);
 
-    if (playbook) {
-      playbook.formValues = formValues;
-      playbook.template = template;
+    if (workflow) {
+      workflow.formValues = formValues;
+      workflow.template = template;
 
-      updatePlaybook(playbook);
+      updateWorkflow(workflow);
 
-      window.location.href = `#/playbooks/${playbook.id}`;
+      window.location.href = `#/workflows/${workflow.id}`;
     }
   };
 

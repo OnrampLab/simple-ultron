@@ -1,6 +1,6 @@
 import { Block } from './types';
 
-export interface PlaybookForm {
+export interface WorkflowForm {
   name: string;
   blocks: Block[];
 }

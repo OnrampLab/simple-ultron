@@ -2,19 +2,19 @@ import { Button, Card, Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Playbook } from '../../../domain/entities/Playbook';
-import { usePlaybooks } from '../hooks/usePlaybooks';
+import { Workflow } from '../../../domain/entities/Workflow';
+import { useWorkflows } from '../hooks/useWorkflows';
 
-export const PlaybookListPage: React.FC = () => {
-  const { playbooks } = usePlaybooks();
+export const WorkflowListPage: React.FC = () => {
+  const { workflows } = useWorkflows();
 
-  const columns: ColumnsType<Playbook> = [
+  const columns: ColumnsType<Workflow> = [
     {
       title: 'Name',
       dataIndex: 'name',
       key: 'name',
       render: (text, record) => (
-        <Link to={`/playbooks/${record.id}`}>{text}</Link>
+        <Link to={`/workflows/${record.id}`}>{text}</Link>
       ),
     },
     {
@@ -27,7 +27,7 @@ export const PlaybookListPage: React.FC = () => {
       key: 'action',
       render: (_, record) => (
         <Space size="middle">
-          <Link to={`/playbooks/${record.id}`}>Show</Link>
+          <Link to={`/workflows/${record.id}`}>Show</Link>
         </Space>
       ),
     },
@@ -35,16 +35,16 @@ export const PlaybookListPage: React.FC = () => {
 
   return (
     <Card
-      title="Playbooks"
+      title="Workflows"
       extra={
         <>
-          <Button type="primary" href="#/playbooks/new">
-            Create New Playbook
+          <Button type="primary" href="#/workflows/new">
+            Create New Workflow
           </Button>
         </>
       }
     >
-      <Table columns={columns} dataSource={playbooks} rowKey="id" />
+      <Table columns={columns} dataSource={workflows} rowKey="id" />
     </Card>
   );
 };
