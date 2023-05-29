@@ -64,14 +64,34 @@ export const PromptManager: React.FC<Props> = ({ id }) => {
       content: <TemplateDiff oldValue={oldTemplate} newValue={template} />,
     });
 
+  const showPreview = () =>
+    showModal({
+      title: 'Preview',
+      okText: 'Save',
+      cancelText: 'Close',
+      onOk: save,
+      content: (
+        <PromptPreview
+          values={formValues}
+          template={template}
+          onOutputChange={setPreviewContent}
+        />
+      ),
+    });
+
   const items: MenuProps['items'] = [
     {
       key: 1,
+      label: 'Preview',
+      onClick: showPreview,
+    },
+    {
+      key: 2,
       label: 'Copy Output',
       onClick: copy,
     },
     {
-      key: 2,
+      key: 3,
       label: 'Show Template Diff',
       onClick: showDiff,
     },
@@ -81,25 +101,18 @@ export const PromptManager: React.FC<Props> = ({ id }) => {
     <Card
       title="SMS Cadence Builder"
       extra={
-        <Dropdown.Button menu={{ items }} onClick={save}>
+        <Dropdown.Button type="primary" menu={{ items }} onClick={save}>
           Save
         </Dropdown.Button>
       }
     >
       <Row gutter={16}>
-        <Col className="gutter-row" span={12}>
+        <Col className="gutter-row" span={24}>
           <PromptDynamicForm
             values={formValues}
             template={template}
             onChange={preview}
             onSubmit={preview}
-          />
-        </Col>
-        <Col className="gutter-row" span={12}>
-          <PromptPreview
-            values={formValues}
-            template={template}
-            onOutputChange={setPreviewContent}
           />
         </Col>
       </Row>
