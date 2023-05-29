@@ -4,6 +4,8 @@ import { smsCadenceBuilder } from '../../domain/workflowForms/smsCadenceBuilder'
 
 import { LocalStorageAdapter } from './LocalStorageAdapter';
 
+const STORE_NAME = 'workflow-store';
+
 class WorkflowAdapter {
   constructor(private storage: KeyValueStorageService<any>) {}
 
@@ -12,15 +14,11 @@ class WorkflowAdapter {
   }
 
   update(workflow: Workflow): Workflow {
-    // NOTE: 把舊的方法移除
-    this.storage.remove('prompt-template');
-    this.storage.remove('prompt-form');
-
-    const workflowStore = this.storage.get('workflow-store') || {};
+    const workflowStore = this.getStore();
 
     if (workflow.id) {
       workflowStore[workflow.id] = workflow;
-      this.storage.set('workflow-store', workflowStore);
+      this.storage.set(STORE_NAME, workflowStore);
 
       console.log('workflow updated', {
         workflow,
@@ -38,7 +36,7 @@ class WorkflowAdapter {
   }
 
   list(query: any = {}): Workflow[] {
-    const workflowStore = this.storage.get('workflow-store') || {};
+    const workflowStore = this.getStore();
 
     Object.keys(workflowStore).forEach((id: string) => {
       workflowStore[id] = Workflow.of(workflowStore[id]);
@@ -48,7 +46,7 @@ class WorkflowAdapter {
   }
 
   get(id: number) {
-    const workflowStore = this.storage.get('workflow-store') || {};
+    const workflowStore = this.getStore();
     const rawWorkflow = workflowStore[id];
 
     if (rawWorkflow) {
@@ -64,6 +62,10 @@ class WorkflowAdapter {
     );
 
     return workflow;
+  }
+
+  private getStore(): any {
+    return this.storage.get(STORE_NAME) || {};
   }
 }
 
