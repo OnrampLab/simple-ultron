@@ -1,4 +1,5 @@
 import { Breadcrumb, Layout, Menu } from 'antd';
+import { BreadcrumbItemType } from 'antd/es/breadcrumb/Breadcrumb';
 import React, { useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
 import { menuItems } from '../config/menuItems';
@@ -9,6 +10,12 @@ export const MyLayout: React.FC = () => {
   const [collapsed, setCollapsed] = useState(false);
 
   const url = new URL(window.location.href);
+
+  const breadcrumbItems: BreadcrumbItemType[] = [
+    {
+      title: <Link to="/workflows">Workflows</Link>,
+    },
+  ];
 
   const defaultSelectedKeys = menuItems
     .filter((item) => {
@@ -33,11 +40,7 @@ export const MyLayout: React.FC = () => {
       </Sider>
       <Layout>
         <Content style={{ margin: '0 15px' }}>
-          <Breadcrumb style={{ margin: '16px 0' }}>
-            <Breadcrumb.Item>
-              <Link to="/workflows">Workflows</Link>
-            </Breadcrumb.Item>
-          </Breadcrumb>
+          <Breadcrumb items={breadcrumbItems} style={{ margin: '16px 0' }} />
           <Outlet />
         </Content>
         <Footer style={{ textAlign: 'center' }}>Onramplab</Footer>
