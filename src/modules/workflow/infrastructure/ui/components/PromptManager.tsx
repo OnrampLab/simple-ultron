@@ -1,7 +1,7 @@
+import { useNavigate } from '@core/infrastructure/ui/hooks/useNavigate';
 import { Card, Col, Dropdown, MenuProps, Row } from 'antd';
 import Mustache from 'mustache';
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { useClipboard } from '../hooks/useClipboard';
 import { useWorkflow } from '../hooks/useWorkflow';
 import { useGlobalModalContext } from '../providers/GlobalModalProvider';

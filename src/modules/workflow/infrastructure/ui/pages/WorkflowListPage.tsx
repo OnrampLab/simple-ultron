@@ -1,7 +1,8 @@
+import { Link } from '@core/infrastructure/ui/components/Link';
+import { useNavigate } from '@core/infrastructure/ui/hooks/useNavigate';
 import { Button, Card, Space, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import React from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import { Workflow } from '../../../domain/entities/Workflow';
 import { useWorkflows } from '../hooks/useWorkflows';
 

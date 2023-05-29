@@ -1,5 +1,5 @@
+import { useParams } from '@core/infrastructure/ui/hooks/useParams';
 import { Col, Row } from 'antd';
-import { useParams } from 'react-router-dom';
 import { PromptManager } from '../components/PromptManager';
 
 export const WorkflowDetailPage: React.FC = () => {
